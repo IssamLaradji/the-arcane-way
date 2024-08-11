@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issam's Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Cinzel', serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('static/assets/background.webp');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .header {
+            width: 100%;
+            height: 300px;
+            position: relative;
+        }
+
+        .profile-info {
+            position: absolute;
+            bottom: 80px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .profile-details h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #f5b042;
+        }
+
+        .profile-details p {
+            margin: 0;
+            color: #ddd;
+        }
+
+        .content {
+            display: flex;
+            margin-top: -70px;
+            padding: 20px;
+        }
+
+        .sidebar {
+            width: 20%;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+
+        .sidebar h2 {
+            margin-top: 0;
+            color: #f5b042;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            margin-left: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            height: 80rem;
+        }
+
+        .main-content h2 {
+            margin-top: 0;
+            color: #f5b042;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tabs button {
+            background: rgba(0, 0, 0, 0.8);
+            border: none;
+            color: #f5b042;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 15rem;
+            font-size: 1.0rem;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
+
+        .tabs button.active {
+            background: #f5b042;
+            color: #000;
+        }
+
+        .project-card {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: rgba(0, 0, 0, 0.85);
+            width: 100%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            text-align: left;
+            color: #ddd;
+            margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+            cursor: pointer; /* Changes cursor to hand */
+        }
+
+        .card:hover {
+            transform: scale(1.01); /* Slightly enlarges the card */
+            box-shadow: 0 0 25px rgba(0,0,0,0.5); /* Makes the shadow more pronounced */
+        }
+
+        .card img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            font-size: 20px;
+            color: #f5b042;
+        }
+
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background: #fff;
+            color: #000;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 80%;
+            max-height: 80%;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .quiz {
+            margin-top: 20px;
+        }
+
+        .quiz h3 {
+            color: #f5b042;
+        }
+
+        .quiz .question {
+            margin-bottom: 10px;
+        }
+
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="profile-info">
+            <img src="static/assets/background.webp" alt="Profile Image" class="profile-image">
+            <div class="profile-details">
+                <h1>Issam The Mystic</h1>
+                <p>Magician | Sorcerer | Seeker of Mystical Knowledge</p>
+                <p>Location: Mystical Realm, Earth</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="sidebar">
+            <h2>About Me</h2>
+            <p>Welcome to my mystical space where magic meets reality. Explore my work and dive into the arcane.</p>
+            <h2>Contact</h2>
+            <p>Email: mystic.issam@example.com</p>
+        </div>
+
+        <div class="main-content">
+            <h2>My Works</h2>
+            <div class="tabs">
+                <button class="tab-button active" data-tab="posts">Posts</button>
+                <button class="tab-button" data-tab="tools">Tools</button>
+                <button class="tab-button" data-tab="rituals">Rituals</button>
+                <button class="tab-button" data-tab="readings">Readings</button>
+                <button class="tab-button" data-tab="quiz">Test Your Knowledge</button>
+            </div>
+            <div class="tab-content" id="posts">
+                <div class="post" id="post-1" style="display: none;">
+                    fewrerwer
+                    werewrwer
+                </div>
+                <div class="project-card" id="project-card">
+                    <div class="card" id="post-project-1">
+                        <h3>Post Project 1</h3>
+                        <p>A brief description of Post Project 1.</p>
+                    </div>
+                    <div class="card" id="post-project-2">
+                        <h3>Post Project 2</h3>
+                        <p>A brief description of Post Project 2.</p>
+                    </div>
+                    <div class="card" id="post-project-3">
+                        <h3>Post Project 3</h3>
+                        <p>A brief description of Post Project 3.</p>
+                    </div>
+                </div>
+                <div class="tab-content" id="tools" style="display:none;">
+                    <div class="project-card">
+                        <div class="card">
+                            <h3>Tool Project 1</h3>
+                            <p>A brief description of Tool Project 1.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Tool Project 2</h3>
+                            <p>A brief description of Tool Project 2.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Tool Project 3</h3>
+                            <p>A brief description of Tool Project 3.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="rituals" style="display:none;">
+                    <div class="project-card">
+                        <div class="card">
+                            <h3>Ritual Project 1</h3>
+                            <p>A brief description of Ritual Project 1.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Ritual Project 2</h3>
+                            <p>A brief description of Ritual Project 2.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Ritual Project 3</h3>
+                            <p>A brief description of Ritual Project 3.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="readings" style="display:none;">
+                    <div class="project-card">
+                        <div class="card">
+                            <h3>Reading Project 1</h3>
+                            <p>A brief description of Reading Project 1.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Reading Project 2</h3>
+                            <p>A brief description of Reading Project 2.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Reading Project 3</h3>
+                            <p>A brief description of Reading Project 3.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="quiz" style="display:none;">
+                    <div class="quiz">
+                        <h3>Test Your Knowledge</h3>
+                        <div class="question">
+                            <p>1. What is the capital of the Mystical Realm?</p>
+                            <label><input type="radio" name="q1" value="a"> A) Magic City</label><br>
+                            <label><input type="radio" name="q1" value="b"> B) Enchanted Town</label><br>
+                            <label><input type="radio" name="q1" value="c"> C) Mystic Haven</label><br>
+                            <label><input type="radio" name="q1" value="d"> D) Spellbound Village</label>
+                        </div>
+                        <div class="question">
+                            <p>2. Who is the Grand Sorcerer of the Realm?</p>
+                            <label><input type="radio" name="q2" value="a"> A) Sorcerer X</label><br>
+                            <label><input type="radio" name="q2" value="b"> B) Wizard Y</label><br>
+                            <label><input type="radio" name="q2" value="c"> C) Mage Z</label><br>
+                            <label><input type="radio" name="q2" value="d"> D) Sorceress W</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Function to handle tab switching
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const tab = this.getAttribute('data-tab');
+            
+            // Hide all tab-content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.style.display = 'none';
+            });
+
+            // Show the selected tab-content
+            document.getElementById(tab).style.display = 'block';
+
+            // Deactivate all buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Activate the clicked button
+            this.classList.add('active');
+
+            if (tab === 'posts') {
+                const post1 = document.getElementById('post-1');
+                const card = document.getElementById('project-card');
+                post1.style.display = 'none';
+                card.style.display = 'block'
+
+            }
+           
+
+        });
+    });
+
+    // Function to handle visibility of post-1
+    document.getElementById('post-project-1').addEventListener('click', function() {
+        const post1 = document.getElementById('post-1');
+        const card = document.getElementById('project-card');
+        if (post1.style.display === 'none' || post1.style.display === '') {
+            post1.style.display = 'block';
+            card.style.display = 'none'
+        } else {
+            post1.style.display = 'none';
+            card.style.display = 'block'
+        }
+    });
+</script>
+</body>
+</html>
